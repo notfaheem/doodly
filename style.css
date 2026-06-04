@@ -1,0 +1,44 @@
+*{
+    margin:0;
+    box-sizing: border-box;
+}
+.flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.center{
+    position: absolute;
+    left:50%;
+    transform: translateX(-50%);
+}
+.centerall{
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+}
+section{
+    width: 100%;
+    height: 100vh;
+    background: #fff;
+    position: relative;
+    padding: 100px 250px;
+}
+
+
+.bg-v{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+.bg{
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+}
