@@ -1,44 +1,153 @@
-*{
-    margin:0;
+* {
+    margin: 0;
     box-sizing: border-box;
+    font-family: "Gochi Hand", cursive;
 }
-.flex{
+
+body {
+    position: relative;
+}
+
+.flex {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.center{
+.flex-c {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:10px
+}
+
+.center {
     position: absolute;
-    left:50%;
+    left: 50%;
     transform: translateX(-50%);
 }
-.centerall{
+
+.centerall {
     position: absolute;
-    left:50%;
-    top:50%;
+    left: 50%;
+    top: 50%;
     transform: translate(-50%, -50%);
 }
-section{
+a.no{
+    text-decoration: none;
+    color: unset;
+    cursor: unset;
+}
+nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 5fr 1fr 1fr 1fr 2fr;
+    align-items: center;
+    gap:20px;
+    padding: 20px 100px;
+    background: #ffffff00;
+    text-align: center;
+}
+.logo {
+    width: 50px;
+    border-radius: 50%;
+}
+.title{
+    font-size: 20px;
+    font-family: "Pacifico", cursive;
+    text-align: left;
+}
+.page{
+    transition: 0.3s;
+    border-radius: 20px;
+    background-color: #00000000;
+}
+.active,.page:hover{
+    background:#000;
+    cursor: pointer;
+    border:3px solid #000;
+    color: #fff;
+}
+.btn{
+    background-color: #000;
+    color: #fff;
+    border-radius: 20px;
+    padding:10px 20px;
+    cursor: pointer;
+    border:3px solid #000 !important;
+    transition: 0.3s;
+    border:none;
+}
+.btn:hover{
+    background-color: #00000000;
+    color: #000;
+}
+section {
     width: 100%;
     height: 100vh;
     background: #fff;
     position: relative;
     padding: 100px 250px;
+    overflow: hidden;
 }
 
-
-.bg-v{
+.bg-v {
     position: absolute;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     z-index: 0;
 }
-.bg{
+
+.bg {
     position: absolute;
-    top:0;
-    left:0;
-    width:100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.bg-w {
+    background: #ffffff6c;
+}
+
+
+.card-container{
+    z-index:2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.doo-up{
+    width:200px;
+    filter: drop-shadow(0 12px 12px rgba(0, 0, 0, 0.39));
+}
+.card{
+    background:#00000000;
+    backdrop-filter: blur(10px);
+    padding:30px 50px 40px 50px;
+    border-radius: 20px;
+    box-shadow: inset 0 0 12px #00000041;
+}
+h1{
+    font-family: "Pacifico", cursive;
+    font-size: 50px;
+}
+.para1{
+    margin: 0 0 15px 0;
+}
+.btn2{
+    padding: 10px 50px;
+}
+.btn3{
+    padding: 5px 20px;
 }
