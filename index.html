@@ -17,18 +17,18 @@
 <body>
 
 
-    <nav>
+    <nav id="nav" >
         <img class="logo" src="public/logo.png">
         <div class="title">Doodly</div>
         <div></div>
         <a href="#" class="no">
-            <div class="page active">Home</div>
+            <div class="page active" id="page1">Home</div>
         </a>
-        <a href="#" class="no">
-            <div class="page">About</div>
+        <a href="#a-sec" class="no">
+            <div class="page" id="page2">About</div>
         </a>
-        <a href="#" class="no">
-            <div class="page">Contact</div>
+        <a href="#c-sec" class="no">
+            <div class="page" id="page3">Contact</div>
         </a>
         <a href="#" class="no">
             <div class="page btn btn1">Enter the Game</div>
@@ -36,12 +36,15 @@
     </nav>
 
 
-    <section class="h-sec">
+    <video class="bg-v" loop autoplay muted poster="public/bg.webp">
+        <source src="public/bg.webm">
+    </video>
 
-        <div class="bg bg-w"></div>
-        <video class="bg-v" loop autoplay muted poster="public/bg.webp">
-            <source src="public/bg.webm">
-        </video>
+    <div class="bg bg-w"></div>
+
+
+    <section class="h-sec" id="h-sec">
+
 
 
         <div class="centerall card-container">
@@ -51,7 +54,7 @@
                 <p class="para1">Welcome to Doodly, a simple fun game where you can move around a tiny doodle world with Doo, and do some interesting stuff!</p>
                 <div class="flex-c">
                     <a href="#" class="no"><div class="btn btn2">Enter the Game</div></a>
-                    <a href="#" class="no"><div class="btn btn3">Know More</div></a>
+                    <a href="#a-sec" class="no"><div class="btn btn3">Know More</div></a>
                 </div>
             </div>
         </div>
@@ -59,6 +62,53 @@
     </section>
 
 
+
+    <section class="a-sec" id="a-sec">
+
+        <div class="flex-c main-container">
+            <h2 class="card sub-head">About</h2>
+
+            <div class="card content">
+                <img src="public/doo-tra.png" alt="Demo Image of Doodly Game" class="img1">
+                <p>Doodly is a fun 2d web game where you can play as a character, Doo and interact with various stuff in the game. This game is based on a doodly theme, which is followed mostly throughout the tiny game. And Fun Fact - Most of the pictures u see in this game is hand drawn in MS Paint! Oh.. can we call it hand drawn?</p>
+                <h2>What's in the game</h2>
+                <p>Doodly is a simple game where you can live as a character in the game and do interact with Doo's Home, Market, School, Hospital and more...</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+
+    <section class="a-sec" id="c-sec">
+
+        <div class="flex-c main-container">
+            <h2 class="card sub-head">Contact</h2>
+
+            <div class="card content">
+                <img src="public/logo-tra.png" alt="Demo Image of Doodly Game" class="img1">
+                <p>I am learning coding and doodly is one of my early projects. I am a 17 year old boy when I make this project. This is not a big game, it's a simple game, made by me to improve my coding skills.</p>
+                <p>So there will be some mistakes and flaws caused by me, so feel free to contact me if u need... Have a nice day and thankyou for being here!</p>
+                <a href="mailto:faheempfaisal@gmail.com">Click to mail me</a>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <footer>
+        <p>Thank you for visiting!</p>
+        <p>&copy; 2026 Doodly</p>
+    </footer>
+
+
+
+
+    <script src="script_home.js"></script>
 </body>
 
 </html>

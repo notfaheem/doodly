@@ -2,6 +2,7 @@
     margin: 0;
     box-sizing: border-box;
     font-family: "Gochi Hand", cursive;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -53,6 +54,10 @@ nav {
     background: #ffffff00;
     text-align: center;
 }
+.n-scroll{
+    background-color: #ffffff69;
+    backdrop-filter: blur(3px);
+}
 .logo {
     width: 50px;
     border-radius: 50%;
@@ -90,20 +95,20 @@ nav {
 section {
     width: 100%;
     height: 100vh;
-    background: #fff;
     position: relative;
     padding: 100px 250px;
     overflow: hidden;
+    z-index:2;
 }
 
 .bg-v {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: 0;
+    z-index: 1  ;
 }
 
 .bg {
@@ -150,4 +155,33 @@ h1{
 }
 .btn3{
     padding: 5px 20px;
+}
+.a-sec{
+    padding: 100px 15%;
+}
+.main-container{
+    width:100%;
+    height: 100%;
+    overflow: hidden;
+    gap:-10px;
+    align-items: flex-start;
+}
+.sub-head{
+    padding: 20px 50px;
+    display: inline;
+    font-family: "Pacifico", cursive;
+    font-size:35px;
+}
+.img1{
+    float: right;
+}
+.content p{
+    text-indent: 30px;
+    margin:10px 0;
+}
+footer{
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 20px 0;
 }
