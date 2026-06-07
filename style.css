@@ -43,7 +43,7 @@ nav {
     position: fixed;
     left: 0;
     top: 0;
-    z-index: 100;
+    z-index: 10;
     width: 100%;
     height: auto;
     display: grid;
@@ -185,3 +185,29 @@ footer{
     text-align: center;
     padding: 20px 0;
 }
+
+
+.loading{
+    position: fixed;
+    top:0;
+    left:0;
+    background:#ffffff8f;
+    z-index:100;
+}
+.l-logo{
+    width:80px;
+    animation: loading 2s infinite;
+}
+@keyframes loading {
+    0%{
+        outline:0px solid #8b8b8b59;
+    }
+    50%{
+        outline:30px solid #8b8b8b59;
+    }
+    100%{
+        outline:0px solid #8b8b8b59;
+    }
+}
+
+

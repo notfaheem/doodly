@@ -1,0 +1,184 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Gochi Hand", cursive;
+    scroll-behavior: smooth;
+}
+body{
+    position: relative;
+}
+
+
+
+.bg-v {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0  ;
+}
+
+.bg {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.bg-w {
+    background: #ffffffc5;
+}
+
+
+
+
+
+
+
+
+
+
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.flex-c {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:10px
+}
+.center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.centerall {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+section{
+    width:100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+.item{
+    width:220px;
+    height:250px;
+    display: grid;
+    grid-template-rows: 220px 30px;
+}
+.i-img{
+    background: url(public/h.webp) center / cover ;
+    transition: 0.3s;
+}
+.i-img:hover , .active-img1{
+    background: url(public/h-c.webp)  center / cover;
+}
+
+
+
+
+.item2{
+    top:30%;
+    left:80%;
+}
+.item2 .i-img{
+    background: url(public/ho.webp) center / cover ;
+    transition: 0.3s;
+}
+.item2 .i-img:hover , .active-img2{
+    background: url(public/ho-c.webp)  center / cover !important;
+}
+
+
+
+.item3{
+    top:75%;
+    left:20%;
+}
+.item3 .i-img{
+    background: url(public/shop.webp) center / cover ;
+    transition: 0.3s;
+}
+.item3 .i-img:hover , .active-img3{
+    background: url(public/shop-c.webp)  center / cover !important;
+}
+
+
+.item4{
+    top:60%;
+    left:70%;
+}
+.item4 .i-img{
+    background: url(public/school.webp) center / cover ;
+    transition: 0.3s;
+}
+.item4 .i-img:hover , .active-img4{
+    background: url(public/school-c.webp)  center / cover !important;
+}
+
+
+.item5{
+    top:80%;
+    left:90%;
+}
+.item5 .i-img{
+    background: url(public/cave.webp) center / cover ;
+    transition: 0.3s;
+}
+.item5 .i-img:hover , .active-img5{
+    background: url(public/cave-c.webp)  center / cover !important;
+}
+
+
+
+
+
+
+
+.doo-container{
+    width:45px;
+    height:100px;
+    position: absolute;
+    top:250px;
+    left:600px;
+    z-index:100;
+    transition: transform 0.3s;
+}
+.doo{
+    background: url(public/doo-tra.webp) center / cover;
+    width:100%;
+    height: 100%;
+    z-index:2;
+    position: relative;
+}
+.wheel{
+    width:10px;
+    height:10px;
+    border-radius: 50%;
+    border:2px dotted #ff0000;
+    position: absolute;
+    background: #000;
+    bottom:0;
+    left:10px;
+    z-index:1;
+    transition: 0.1s;
+    transform: rotate(0deg);
+}
+.wheel2{
+    left:30px;
+}

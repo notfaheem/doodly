@@ -25,3 +25,6 @@ window.addEventListener("scroll", ()=>{
         pageThree.classList.add("active");
     }
 });
+window.addEventListener("load", ()=>{
+    document.getElementById("loading").style.display = "none";
+})
