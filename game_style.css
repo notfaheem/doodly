@@ -33,15 +33,21 @@ body{
     background: #ffffffc5;
 }
 
-
-
-
-
-
-
-
-
-
+.btn{
+    background-color: #000;
+    color: #fff;
+    border-radius: 20px;
+    padding:10px 20px;
+    cursor: pointer;
+    border:3px solid #000 !important;
+    transition: 0.3s;
+    border:none;
+    text-align: center;
+}
+.btn:hover{
+    background-color: #00000000;
+    color: #000;
+}
 
 .flex {
     display: flex;
@@ -66,7 +72,9 @@ body{
     top: 50%;
     transform: translate(-50%, -50%);
 }
-
+a.no{
+    text-decoration: none;
+}
 
 section{
     width:100%;
@@ -75,11 +83,116 @@ section{
 }
 
 
-.item{
-    width:220px;
-    height:250px;
+
+.loading{
+    position: fixed;
+    top:0;
+    left:0;
+    background:#ffffff8f;
+    z-index:1000;
+}
+.l-logo{
+    width:80px;
+    border-radius: 50%;
+    animation: loading 2s infinite;
+}
+@keyframes loading {
+    0%{
+        outline:0px solid #8b8b8b59;
+    }
+    50%{
+        outline:30px solid #8b8b8b59;
+    }
+    100%{
+        outline:0px solid #8b8b8b59;
+    }
+}
+
+
+
+.top-bar{
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:50px;
+    padding:10px 30px;
     display: grid;
-    grid-template-rows: 220px 30px;
+    grid-template-columns: 150px 5fr 100px 100px 100px 1fr;
+}
+.stats{
+    gap:10px;
+}
+.top-icon{
+    height: 30px;
+}
+
+.pp{
+    position:fixed;
+    width:400px;
+    z-index: 12;
+    background-color: #fff;
+    border:3px solid #000;
+    border-radius: 20px;
+    padding: 20px;
+    transition: 0.5s;
+    opacity:0;
+    display: none;
+}
+.bg-b {
+    background: #444444c5;
+    z-index:11;
+    transition: 0.5s;
+    opacity:0;
+    display: none;
+}
+#pp-h{
+    text-align: center;
+}
+#pp-para{
+    font-size:13px;
+    text-align: center;
+    margin: 10px 0 10px 0;
+}
+.pp-ind-container{
+    border:2px solid #000;
+    border-radius: 18px;
+    padding:8px 15px;
+    margin: 0 10px;
+}
+.pp-img{
+    width:50px;
+}
+.pp-btn{
+    margin: 10px 0 0 0;
+    width:50%;
+    padding: 5px 15px;
+    position: relative;
+}
+
+
+
+
+.i-btn{
+    padding:1px 10px;
+    font-size:15px;
+    position:absolute;
+    bottom:30px;
+    left:50%;
+    transform: translateX(-50%);
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+
+
+
+
+.item{
+    width:170px;
+    height:200px;
+    display: grid;
+    grid-template-rows: 170px 30px;
 }
 .i-img{
     background: url(public/h.webp) center / cover ;
@@ -150,13 +263,16 @@ section{
 
 
 
+
+
+
 .doo-container{
     width:45px;
     height:100px;
     position: absolute;
     top:250px;
     left:600px;
-    z-index:100;
+    z-index:10;
     transition: transform 0.3s;
 }
 .doo{

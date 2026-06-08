@@ -5,16 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doodly - Game</title>
     <link rel="stylesheet" href="game_style.css">
+    <link rel="shortcut icon" href="public/logo.png" type="image/x-icon">
 </head>
 <body>
     
-
 
     <video class="bg-v" loop autoplay muted poster="public/bg.webp">
         <source src="public/bg.webm">
     </video>
 
     <div class="bg bg-w"></div>
+
+
+
+
+
+
+    <div class="top-bar">
+        <a class="no" href="index.html"><div class="btn back-btn">Back Home</div></a>
+        <div></div>
+        <div class="flex stats">
+            <img class="top-icon" src="public/cap.webp">
+            <div class="stat" id="edu">10000</div>
+        </div>
+        <div class="flex stats">
+            <img class="top-icon" src="public/heart.webp">
+            <div class="stat" id="hearts">10000</div>
+        </div>
+        <div class="flex stats">
+            <img class="top-icon" src="public/coin.webp">
+            <div class="stat" id="coins">1000</div>
+        </div>
+        <div class="flex stats">
+            <img class="top-icon" src="public/settings.webp">
+        </div>
+    </div>
+
+
+
+
 
 
 
@@ -28,35 +57,65 @@
         
         <div class="centerall item item1" id="item1"> <!--Home-->
             <div class="i-img"></div>
-            <div class="i-btn"></div>
+            <div class="btn i-btn" id="i-btn1">Interact</div>
         </div>
         
         <div class="centerall item item2" id="item2"> <!--Hos-->
             <div class="i-img"></div>
-            <div class="i-btn"></div>
+            <div class="btn i-btn" id="i-btn2">Interact</div>
         </div>
 
         <div class="centerall item item3" id="item3">  <!--Shop-->
             <div class="i-img"></div>
-            <div class="i-btn"></div>
+            <div class="btn i-btn" id="i-btn3">Interact</div>
         </div>
 
         <div class="centerall item item4" id="item4"> <!--schoo-->
             <div class="i-img"></div>
-            <div class="i-btn"></div>
+            <div class="btn i-btn" id="i-btn4">Interact</div>
         </div>
 
 
         <div class="centerall item item5" id="item5"> <!--Cave-->
             <div class="i-img"></div>
-            <div class="i-btn"></div>
+            <div class="btn i-btn" id="i-btn5">Interact</div>
         </div>
 
     </section>
 
 
+    <div class="bg bg-b" id="bg-b"></div>
+    <div class="centerall pp" id="pp">
+        <h2 id="pp-h">Good Work!!</h2>
+        <hr>
+        <p id="pp-para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, aspernatur asperiores assumenda iusto dolore laudantium vel, porro fuga eveniet atque laboriosam, repudiandae quod? Laboriosam laudantium, molestias fuga a nemo hic!
+ 
+        </p>
+        <div class="flex pp-container">
+            <div class="flex-c pp-ind-container">
+                <img src="public/cap.webp" class="pp-img" alt="edu">
+                <div id="pp-edu">00</div>
+            </div>
+            <div class="flex-c pp-ind-container">
+                <img src="public/heart.webp" class="pp-img" alt="heart">
+                <div id="pp-hearts">00</div>
+            </div>
+            <div class="flex-c pp-ind-container">
+                <img src="public/coin.webp" class="pp-img" alt="coins">
+                <div id="pp-coins">00</div>
+            </div>
+        </div>
+
+        <div class="center btn pp-btn" id="pp-btn">Got it!</div>
+    </div>
 
 
+
+
+    
+    <section class="loading" id="loading">
+        <img class="centerall logo l-logo" src="public/logo.png">
+    </section>
 
 
 
