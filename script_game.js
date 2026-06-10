@@ -1,7 +1,13 @@
 window.addEventListener("load", ()=>{
     document.getElementById("loading").style.display = "none";
 });
-
+document.addEventListener("click", () => {
+    const bgm = new Audio("public/bgm.ogg");
+    if(bgm.paused){
+        bgm.volume = 0.05;
+        bgm.play()
+    }
+}, {once:true});
 
     /*Movement*/
 
@@ -52,6 +58,7 @@ function colour(){
     items.forEach((item, index) => {
         const playerArea = doo.getBoundingClientRect();
         const itemArea = item.getBoundingClientRect();
+        const itemContainer = document.getElementById(`item${index+1}`)
         const overlap = 
             playerArea.left < itemArea.right &&
             playerArea.right > itemArea.left &&
@@ -59,10 +66,12 @@ function colour(){
             playerArea.bottom > itemArea.top;
         if (overlap){
             item.classList.add(`active-img${index+1}`);
+            itemContainer.classList.add("item-hover");
             btns[index].style.opacity = 1;
             btns[index].style.pointerEvents = "all";
         }else{
             item.classList.remove(`active-img${index+1}`);
+            itemContainer.classList.remove("item-hover")
             btns[index].style.opacity = 0;
             btns[index].style.pointerEvents = "none";
         }
@@ -81,10 +90,9 @@ btns.forEach((button, index) => {
             toggleStat("Welcome Home", "This is your stats so far... How is it?", know, hearts, coins, "Ok");
         }
         if (btns[index] == btns[1]) {
-            let coinsCave = randomNumber(20, 10);
-            console.log(coinsCave)
+            let coinsCave = randomNumber(10, 20);
             if (coins < coinsCave){
-                toggleStat("Hospital", "Don't have enough money to get surgery, or whatever u need!", 0, 0, 0, "Ok", 100, "Checking ur wallet...", studyS);
+                toggleStat("Hospital", "Don't have enough money to get surgery, or whatever u need!", 0, 0, 0, "Ok", 100, "Checking ur wallet...", noS);
             }else{
                 const knowCave = randomNumber(0, 5);
                 const heartsCave = randomNumber(10, 20);
@@ -94,11 +102,16 @@ btns.forEach((button, index) => {
             }
         }
         if (btns[index] == btns[3]) {
-            const knowCave = randomNumber(10, 20);
-            const heartsCave = randomNumber(-2, 1);
-            const coinsCave = randomNumber(-10, -1);
-            changeStats(knowCave, heartsCave, coinsCave);
-            toggleStat("Study Time!!", "You just did an academic miracle!! Just Wow!", knowCave, heartsCave, coinsCave, "Ok", 2000, "Studying...", studyS);
+            let coinsCave = randomNumber(1, 10);
+            if (coins < coinsCave){
+                toggleStat("School", "Don't have enough money!", 0, 0, 0, "Ok", 100, "Checking ur wallet...", studyS);
+            }else{
+                const knowCave = randomNumber(10, 20);
+                const heartsCave = randomNumber(-2, 1);
+                coinsCave = coinsCave*-1;
+                changeStats(knowCave, heartsCave, coinsCave);
+                toggleStat("Study Time!!", "You just did an academic miracle!! Just Wow!", knowCave, heartsCave, coinsCave, "Ok", 2000, "Studying...", studyS);
+            }
         }
         if (btns[index] == btns[4]) {
             const knowCave = randomNumber(1, 3);
@@ -113,11 +126,25 @@ btns.forEach((button, index) => {
 
 /* Stats Popup */
 const doneS = new Audio("public/done.mp3");
+const noS = new Audio("public/wrong.mp3");
 const studyS = new Audio("public/study.mp3");
 const miningS = new Audio("public/mining.mp3");
-let know = 10;
-let hearts = 10;                                    /*After doing localstorage change to that values*/
-let coins = 10;
+const allSounds = [doneS, noS, studyS, miningS];
+allSounds.forEach(sound => {
+    sound.volume = 0.5;
+})
+if (localStorage.getItem("coins") == null){
+    var coins = 10;
+    var know = 10;
+    var hearts = 10;
+    localStorage.setItem("know",10);
+    localStorage.setItem("hearts",10);
+    localStorage.setItem("coins",10);
+}else{
+    var know = localStorage.getItem("know");
+    var hearts = localStorage.getItem("hearts");
+    var coins = localStorage.getItem("coins");
+}
 document.getElementById("edu").innerText = know;
 document.getElementById("hearts").innerText = hearts;
 document.getElementById("coins").innerText = coins;
@@ -185,9 +212,32 @@ function randomNumber(min, max){                                             /*A
 /* Changing Stats */
 function changeStats (knowValue, heartsValue, coinsValue){
     if (knowValue != undefined){
-        know = know + knowValue;
-        hearts = hearts + heartsValue;                                  /*Update in localstorage too*/
-        coins = coins + coinsValue;
+        localStorage.setItem("know", Number(localStorage.getItem("know")) + knowValue);
+        localStorage.setItem("hearts", Number(localStorage.getItem("hearts")) + heartsValue);
+        localStorage.setItem("coins", Number(localStorage.getItem("coins")) + coinsValue);
+        know = Number(localStorage.getItem("know"));
+        hearts = Number(localStorage.getItem("hearts"));
+        coins = Number(localStorage.getItem("coins"));
+        if(hearts<1){
+            document.getElementById("die-menu").style.transform = "scale(1)";
+            document.getElementById("die-know").innerText = know;
+            document.getElementById("die-hearts").innerText = "00";
+            document.getElementById("die-coins").innerText = coins;
+            noS.currentTime = 0;
+            noS.play();
+            const respawnBtn = document.getElementById("respawn-btn");
+            respawnBtn.addEventListener("click", respawn)
+            function respawn(){
+                localStorage.setItem("know", 10);
+                localStorage.setItem("hearts", 10);
+                localStorage.setItem("coins", 10);
+                know = Number(localStorage.getItem("know"));
+                hearts = Number(localStorage.getItem("hearts"));
+                coins = Number(localStorage.getItem("coins"));
+                document.getElementById("die-menu").style.transform = "scale(0)";
+                location.reload()
+            }
+        }
     }
     if(updateStats == true){
         document.getElementById("edu").innerText = know;

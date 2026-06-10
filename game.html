@@ -6,6 +6,11 @@
     <title>Doodly - Game</title>
     <link rel="stylesheet" href="game_style.css">
     <link rel="shortcut icon" href="public/logo.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Finger+Paint&family=Matemasie&family=Pacifico&family=Share+Tech&display=swap"
+        rel="stylesheet">
 </head>
 <body>
     
@@ -57,7 +62,7 @@
         </div>
 
         
-        <div class="centerall item item1" id="item1"> <!--Home-->
+        <div class="centerall item item1 " id="item1"> <!--Home-->
             <div class="i-img"></div>
             <div class="btn i-btn" id="i-btn1">Interact</div>
         </div>
@@ -65,6 +70,14 @@
         <div class="centerall item item2" id="item2"> <!--Hos-->
             <div class="i-img"></div>
             <div class="btn i-btn" id="i-btn2">Interact</div>
+            <div class="flex preview">
+                <img src="public/cap.webp" class="preview-img">
+                <div class="preview-text ">10 - 20</div>
+                <img src="public/heart.webp" class="preview-img">
+                <div class="preview-text ">10 - 20</div>
+                <img src="public/coin.webp" class="preview-img">
+                <div class="preview-text preview-text-red">10 - 20</div>
+            </div>
         </div>
 
         <div class="centerall item item3" id="item3">  <!--Shop-->
@@ -75,12 +88,28 @@
         <div class="centerall item item4" id="item4"> <!--schoo-->
             <div class="i-img"></div>
             <div class="btn i-btn" id="i-btn4">Interact</div>
+            <div class="flex preview">
+                <img src="public/cap.webp" class="preview-img">
+                <div class="preview-text ">10 - 20</div>
+                <img src="public/heart.webp" class="preview-img">
+                <div class="preview-text ">10 - 20</div>
+                <img src="public/coin.webp" class="preview-img">
+                <div class="preview-text preview-text-red">10 - 20</div>
+            </div>
         </div>
 
 
         <div class="centerall item item5" id="item5"> <!--Cave-->
             <div class="i-img"></div>
             <div class="btn i-btn" id="i-btn5">Interact</div>
+            <div class="flex preview">
+                <img src="public/cap.webp" class="preview-img">
+                <div class="preview-text ">10 - 20</div>
+                <img src="public/heart.webp" class="preview-img">
+                <div class="preview-text ">10 - 20</div>
+                <img src="public/coin.webp" class="preview-img">
+                <div class="preview-text preview-text-red">10 - 20</div>
+            </div>
         </div>
 
     </section>
@@ -113,6 +142,34 @@
 
 
 
+
+
+    <div class="die-menu" id="die-menu">
+        <div class="centerall big-container">
+
+
+        <div class="die-h">You Died</div>
+
+            <div class="flex die-stats-container">
+                <div class="flex-c die-ind-container">
+                    <img src="public/cap.webp" class="pp-img" alt="know">
+                    <div id="die-know">00</div>
+                </div>
+                <div class="flex-c die-ind-container die-ind-container-hearts">
+                 <img src="public/heart.webp" class="pp-img" alt="hearts">
+                    <div id="die-hearts">00</div>
+                </div>
+                <div class="flex-c die-ind-container">
+                    <img src="public/coin.webp" class="pp-img" alt="coins">
+                    <div id="die-coins">00</div>
+                </div>
+            </div>
+        
+
+        <div class="center btn respawn-btn" id="respawn-btn">Respawn</div>
+        <div class="die-para">You have ran out of hearts and died, now your every stat will be reset. btw RIP...</div>
+        </div>
+    </div>
 
     
     <section class="loading" id="loading">
