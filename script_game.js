@@ -1,14 +1,54 @@
+const bgmToggle = document.getElementById("bgm-toggle");
 window.addEventListener("load", ()=>{
     document.getElementById("loading").style.display = "none";
 });
 document.addEventListener("click", () => {
-    const bgm = new Audio("public/bgm.ogg");
-    if(bgm.paused){
-        bgm.volume = 0.05;
-        bgm.play()
+    if(localStorage.getItem("bgm") == null || localStorage.getItem("bgm") == "yes"){
+        getBgm("yes");
+        bgmToggle.checked = true;
+    }else{
+        bgmToggle.checked = false;
     }
 }, {once:true});
 
+
+bgmToggle.addEventListener("change", (event) => {
+    if(event.target.checked){
+        localStorage.setItem("bgm", "yes")
+        getBgm("yes")
+    }else{
+        localStorage.setItem("bgm", "no")
+        getBgm("no")
+    }
+    console.log(localStorage.getItem("bgm"))
+})
+
+const bgm = new Audio("public/bgm.ogg");
+function getBgm (access){
+    if(access == "yes"){
+        if(bgm.paused){
+            bgm.volume = 0.05;
+            bgm.play()
+        }
+    }else{
+        bgm.pause();
+        bgm.currentTime = 0;
+    }
+}
+
+
+const settingsBtn = document.getElementById("settings-btn");
+const settings = document.getElementById("settings");
+const settingsBg = document.getElementById("bg-settings");
+const settingsClose = document.getElementById("close-settings");
+settingsBtn.addEventListener("click", () => {
+    settings.style.transform = "scale(1) translate(-50%, -50%)";
+    settingsBg.style.transform = "scale(1)";
+});
+settingsClose.addEventListener("click" , ()=> {
+    settings.style.transform = "scale(0) translate(-50%, -50%)";
+    settingsBg.style.transform = "scale(0)";
+})
     /*Movement*/
 
 const doo = document.getElementById("doo-container");
