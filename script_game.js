@@ -49,17 +49,20 @@ settingsClose.addEventListener("click" , ()=> {
     settings.style.transform = "scale(0) translate(-50%, -50%)";
     settingsBg.style.transform = "scale(0)";
 })
-    /*Movement*/
 
+
+    /*Movement*/
 const doo = document.getElementById("doo-container");
 const legOne = document.getElementById("leg1");
 const legTwo = document.getElementById("leg2");
+const sayText = document.getElementById("say");
 window.addEventListener("keydown", () => {
     if (event.key == "ArrowRight"){
         let position = parseFloat(getComputedStyle(doo).left);
         position+=2;
         doo.style.left = position + "px";
         doo.style.transform = "scaleX(1)";
+        sayText.style.transform = "scaleX(1) translateX(-50%)";
         legOne.style.animation = "walk 1s infinite";
         legTwo.style.animation = "walk 1s infinite 0.5s";
     }
@@ -68,6 +71,7 @@ window.addEventListener("keydown", () => {
         position-=2;
         doo.style.left = position + "px";
         doo.style.transform = "scaleX(-1)";
+        sayText.style.transform = "scaleX(-1) translateX(50%)";
         legOne.style.animation = "walk 1s infinite";
         legTwo.style.animation = "walk 1s infinite 0.5s";
     }
@@ -125,14 +129,15 @@ requestAnimationFrame(colour);
 /*Interact button*/
 const btns = document.querySelectorAll(".i-btn");
 btns.forEach((button, index) => {
-    button.addEventListener("click", () => {
+    button.addEventListener("click", (e) => {
+        if(e.currentTarget.disabled) return;
         if (btns[index] == btns[0]) {
             toggleStat("Welcome Home", "This is your stats so far... How is it?", know, hearts, coins, "Ok");
         }
         if (btns[index] == btns[1]) {
             let coinsCave = randomNumber(10, 20);
             if (coins < coinsCave){
-                toggleStat("Hospital", "Don't have enough money to get surgery, or whatever u need!", 0, 0, 0, "Ok", 100, "Checking ur wallet...", noS);
+                broke("coins")
             }else{
                 const knowCave = randomNumber(0, 5);
                 const heartsCave = randomNumber(10, 20);
@@ -141,10 +146,13 @@ btns.forEach((button, index) => {
                 toggleStat("Hospital", "Got some more health!!", knowCave, heartsCave, coinsCave, "Ok", 2000, "Surgery in progress... (tbh idk if its a surgery!)", studyS);
             }
         }
+        if (btns[index] == btns[2]) {
+            openShop();
+        }
         if (btns[index] == btns[3]) {
             let coinsCave = randomNumber(1, 10);
             if (coins < coinsCave){
-                toggleStat("School", "Don't have enough money!", 0, 0, 0, "Ok", 100, "Checking ur wallet...", studyS);
+                broke("coins")
             }else{
                 const knowCave = randomNumber(10, 20);
                 const heartsCave = randomNumber(-2, 1);
@@ -159,6 +167,14 @@ btns.forEach((button, index) => {
             const coinsCave = randomNumber(10, 20);
             changeStats(knowCave, heartsCave, coinsCave);
             toggleStat("Wanna Mine?", "Oh!! you have mined some really good stuff!! Also got some useful knowledge! and you have hurt ur hands ig, wanna go to hospital?", knowCave, heartsCave, coinsCave, "Ok", 2000, "Mining...", miningS);
+
+            /*Cooldown*/
+            btns[index].innerText = "Cooldown";
+            btns[index].disabled = true;
+            setTimeout(()=> {
+                btns[index].innerText = "Interact";
+                btns[index].disabled = false;
+            },10000)
         }
     });
 });
@@ -283,6 +299,86 @@ function changeStats (knowValue, heartsValue, coinsValue){
         document.getElementById("edu").innerText = know;
         document.getElementById("hearts").innerText = hearts;
         document.getElementById("coins").innerText = coins;
+        document.getElementById("know-in-shop").innerText = Number(localStorage.getItem("know"));
+        document.getElementById("hearts-in-shop").innerText = Number(localStorage.getItem("hearts"));
+        document.getElementById("coins-in-shop").innerText = Number(localStorage.getItem("coins"));
         updateStats = false;
     }
+}
+
+
+/*Say*/
+function say(text,time){
+    sayText.innerText = text;
+    sayText.style.opacity = 1;
+    setTimeout(()=> {
+        sayText.style.opacity = 0;
+    },time)
+}
+
+
+/*Open Shop*/
+function openShop(){
+    const shopBg = document.getElementById("shop-bg");
+    document.getElementById("know-in-shop").innerText = Number(localStorage.getItem("know"));
+    document.getElementById("hearts-in-shop").innerText = Number(localStorage.getItem("hearts"));
+    document.getElementById("coins-in-shop").innerText = Number(localStorage.getItem("coins"));
+    const shopView = document.getElementById("shop-view");
+    shopBg.style.zIndex = 15;
+    shopBg.style.opacity = 1;
+    shopView.style.opacity =1;
+    shopView.style.transform = "translate(-50%,-50%) scale(1) ";
+    const shopBtns = document.querySelectorAll(".shop-btn");
+    shopBtns.forEach((shopBtn, index) => {
+        shopBtn.addEventListener("click", () => {
+            const purchaseValues = document.querySelectorAll(`#shop-item${index+1} .stat`);
+            console.log(typeof Number(purchaseValues[0].innerText))
+            const knowToDecrease = Number(purchaseValues[0].innerText);
+            const heartsToDecrease = Number(purchaseValues[1].innerText);
+            const coinToDecrease = Number(purchaseValues[2].innerText);
+            updateStats = true;
+            changeStats(knowToDecrease, heartsToDecrease, coinToDecrease);
+
+            /*Add jump boost effects if shopBtn = shopBtns[0]*/
+        })
+    });
+    const closeShop = document.getElementById("close-shop");
+    closeShop.addEventListener("click", ()=>{
+        shopBg.style.opacity = 0;
+        shopBg.style.zIndex = -10;
+        shopView.style.transform = "translate(-50%,-50%) scale(0) ";
+
+    })
+}
+
+
+/*broke*/
+function broke (what){
+    const uniBg = document.getElementById("uni-bg");
+    const noMoney = document.getElementById("no-money");
+    const noMoneyH = document.getElementById("nm-h");
+    const noMoneyPara = document.getElementById("nm-para");
+    const noMoneyBtn = document.getElementById("nm-btn");
+    if(what == "know"){
+        noMoneyH.innerText = "Not enough Knowledge";
+        noMoneyPara.innerText = "You don't have enough knowledge...";
+    }else if(what == "hearts"){
+        noMoneyH.innerText = "Not Enough Hearts";
+        noMoneyPara.innerText = "You don't have enough hearts...";
+    }else if(what == "coins"){
+        noMoneyH.innerText = "Not Enough Coins";
+        noMoneyPara.innerText = "You don't have enough coins...";
+    }else{
+        noMoneyH.innerText = "Requirements Not Met";
+        noMoneyPara.innerText = "You haven't met all the requirements";
+
+    }
+    uniBg.style.zIndex = 15;
+    uniBg.style.opacity = 1;
+    noMoney.style.transform = " translate(-50%, -50%) scale(1)";
+    noMoneyBtn.addEventListener("click", ()=>{
+        noMoney.style.transform = " translate(-50%, -50%) scale(0)";
+        uniBg.style.opacity = 0;
+        uniBg.style.zIndex = -10;
+    })
 }
