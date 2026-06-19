@@ -1,13 +1,26 @@
 const bgmToggle = document.getElementById("bgm-toggle");
+const sfxToggle = document.getElementById("sound-effects-toggle");
+const mBtnsToggle = document.getElementById("mobile-btns-toggle");
+const mobileViewBtns = document.getElementById("mobile-view-btns");
 window.addEventListener("load", ()=>{
     document.getElementById("loading").style.display = "none";
     const accessories = document.getElementById("accessories");
+    if(localStorage.getItem("newPlayer") == null || localStorage.getItem("newPlayer") == "true"){
+        tutorial();
+    }
     if(localStorage.getItem("accessories") == "yellow-hat"){
         accessories.classList.add("yellow-hat")
     }else if (localStorage.getItem("accessories") == "blue-hat"){
         accessories.classList.add("blue-hat")
     }else if (localStorage.getItem("accessories") == "red-hat"){
         accessories.classList.add("red-hat")
+    }
+    if(localStorage.getItem("mobileBtns") == "yes"){
+        mobileViewBtns.style.display = "flex";
+        mBtnsToggle.checked = true;
+    }else{
+        mobileViewBtns.style.display = "none";
+        mBtnsToggle.checked = false;
     }
 });
 document.addEventListener("click", () => {
@@ -16,6 +29,14 @@ document.addEventListener("click", () => {
         bgmToggle.checked = true;
     }else{
         bgmToggle.checked = false;
+    }
+
+    if(localStorage.getItem("sfx") == null || localStorage.getItem("sfx") == "yes"){
+        getSfx("yes");
+        sfxToggle.checked = true;
+    }else{
+        sfxToggle.checked = false;
+        getSfx("no")
     }
 }, {once:true});
 
@@ -28,7 +49,6 @@ bgmToggle.addEventListener("change", (event) => {
         localStorage.setItem("bgm", "no")
         getBgm("no")
     }
-    console.log(localStorage.getItem("bgm"))
 })
 
 const bgm = new Audio("public/bgm.ogg");
@@ -44,6 +64,60 @@ function getBgm (access){
     }
 }
 
+
+sfxToggle.addEventListener("change", (event) => {
+    if(event.target.checked){
+        localStorage.setItem("sfx", "yes");
+        getSfx("yes");
+    }else{
+        localStorage.setItem("sfx", "no");
+        getSfx("no");
+    }
+})
+
+
+//mobile view buttons toggle
+mBtnsToggle.addEventListener("change", (event) => {
+    if(event.target.checked){
+        localStorage.setItem("mobileBtns", "yes");
+        mobileView("yes")
+    }else{
+        localStorage.setItem("mobileBtns", "no");
+        mobileView("no")
+    }
+})
+function mobileView(access){
+    if(access == "yes"){
+        mobileViewBtns.style.display = "flex";
+    }else {
+        mobileViewBtns.style.display = "none";
+    }
+}
+
+
+
+
+const doneS = new Audio("public/done.mp3");
+const noS = new Audio("public/wrong.mp3");
+const studyS = new Audio("public/study.mp3");
+const miningS = new Audio("public/mining.mp3");
+const gymS = new Audio("public/gym.mp3"); 
+const allSounds = [doneS, noS, studyS, miningS, gymS];
+allSounds.forEach(sound => {
+    sound.volume = 0.5;
+})
+
+function getSfx(access){
+    if(access == "yes"){
+        allSounds.forEach(sound => {
+            sound.volume = 0.5;
+        })
+    }else{
+        allSounds.forEach(sound => {
+            sound.volume = 0;
+        })
+    }
+}
 
 // Settings
 const settingsBtn = document.getElementById("settings-btn");
@@ -320,15 +394,7 @@ btns.forEach((button, index) => {
 
 
 /* Stats Popup */
-const doneS = new Audio("public/done.mp3");
-const noS = new Audio("public/wrong.mp3");
-const studyS = new Audio("public/study.mp3");
-const miningS = new Audio("public/mining.mp3");
-const gymS = new Audio("public/gym.mp3"); 
-const allSounds = [doneS, noS, studyS, miningS, gymS];
-allSounds.forEach(sound => {
-    sound.volume = 0.5;
-})
+
 if (localStorage.getItem("coins") == null){
     var coins = 10;
     var know = 10;
@@ -434,6 +500,11 @@ function say(text,time){
     setTimeout(()=> {
         sayText.style.opacity = 0;
     },time)
+    return new Promise((resolve) => {
+        setTimeout(()=>{
+            resolve();
+        }, time)
+    })
 }
 
 
@@ -537,6 +608,11 @@ shopBtns.forEach((shopBtn, index) => {
 
     })
 });
+shopBg.addEventListener("click", ()=>{
+    shopBg.style.opacity = 0;
+    shopBg.style.zIndex = -10;
+    shopView.style.transform = "translate(-50%,-50%) scale(0) ";
+})
 
 
 closeShop.addEventListener("click", () => {
@@ -564,6 +640,9 @@ function broke (what){
     }else if(what == "key"){
         noMoneyH.innerText = "WOOOWWW!!! Key to World 2 Acquired";
         noMoneyPara.innerText = "World 2 is coming sooonnnn... Stay tuned for your next adventures journey of life there. Meanwhile can you make it to 1 million coins here?";
+    }else if(what == "mobile"){
+        noMoneyH.innerText = "Disclaimer";
+        noMoneyPara.innerText = "You are using a low width device, where Doodly works but may have some bugs. So kindly switch to a high width device or if u find any bugs in this device let us know in the feedback form in the settings menu!! Enjoyy...";
     }
     else{
         noMoneyH.innerText = "Requirements Not Met";
@@ -645,13 +724,156 @@ setInterval(()=>{
     updateStats=false;
 },30000)
 
+investBg.addEventListener("click", () => {
+    investBg.style.opacity = 0;
+    investBg.style.zIndex = -10;
+    investView.style.transform = "translate(-50%,-50%) scale(0) ";
+})
+
+
+
+
+
+// Mobile controls
+const mobileUp = document.getElementById("up-btn");
+const mobileDown = document.getElementById("down-btn");
+const mobileLeft = document.getElementById("left-btn");
+const mobileRight = document.getElementById("right-btn");
+
+
+let mobileInterval = null;
+
+function startMove(direction){
+    if(mobileInterval) return;
+    legOne.style.animation = "walk 1s infinite";
+    legTwo.style.animation = "walk 1s infinite 0.5s";
+    mobileInterval = setInterval(()=>{
+        let speed = localStorage.getItem("speed") == null 
+            ? 2 
+            : Number(localStorage.getItem("speed"));
+        let pos;
+        if(direction == "right"){
+            pos = parseFloat(getComputedStyle(doo).left);
+            doo.style.left = (pos + speed) + "px";
+            doo.style.transform = "scaleX(1)";
+        }
+        if(direction == "left"){
+            pos = parseFloat(getComputedStyle(doo).left);
+            doo.style.left = (pos - speed) + "px";
+            doo.style.transform = "scaleX(-1)";
+        }
+        if(direction == "up"){
+            pos = parseFloat(getComputedStyle(doo).top);
+            doo.style.top = (pos - speed) + "px";
+        }
+        if(direction == "down"){
+            pos = parseFloat(getComputedStyle(doo).top);
+            doo.style.top = (pos + speed) + "px";
+        }
+    },16);
+}
+
+function stopMove(){
+    clearInterval(mobileInterval);
+    mobileInterval = null;
+
+    legOne.style.animation = "none";
+    legTwo.style.animation = "none";
+}
+
+
+[
+    [mobileRight,"right"],
+    [mobileLeft,"left"],
+    [mobileUp,"up"],
+    [mobileDown,"down"]
+].forEach(([btn,dir])=>{
+    btn.addEventListener("touchstart", e=>{
+        e.preventDefault();
+        startMove(dir);
+    });
+    btn.addEventListener("touchend", stopMove);
+    btn.addEventListener("touchcancel", stopMove);
+});
+localStorage.removeItem("speed")
 
 
 //tutorial
-function tutorial (){
-    console.log("Will do last")
-}
+async function tutorial (){
 
+    const tutorialbg = document.getElementById("tutorial");
+    tutorialbg.style.opacity = 1;
+    tutorialbg.style.pointerEvents = "all";
+    tutorialbg.style.zIndex = 1;
+
+    const tbtns = document.querySelectorAll(".i-btn");
+    tbtns.forEach((button,index) => {
+        button.style.display = "none";
+    })
+
+    await say("Hi I am Doo, move around here using arrow keys.", 6000);
+    const tHome = document.getElementById("item1");
+    tHome.style.zIndex = 1;
+    await say("This is my home.", 5000)
+
+    const tScho = document.getElementById("item4");
+    tHome.style.zIndex = "unset";
+    tScho.style.zIndex = 1;
+    await say("You can earn knowledge from the school.", 5000)
+
+    const tHos = document.getElementById("item2");
+    const tGym = document.getElementById("item6");
+    tScho.style.zIndex = "unset";
+    tHos.style.zIndex = 1;
+    tGym.style.zIndex = 1;
+    await say("Improve your health and earn hearts from hospital and gym.", 7000);
+
+    const tCave = document.getElementById("item5");
+    const tJob = document.getElementById("item7");
+    const tInv = document.getElementById("item8");
+    tHos.style.zIndex = "unset";
+    tGym.style.zIndex = "unset";
+    tCave.style.zIndex = 1;
+    tJob.style.zIndex = 1;
+    tInv.style.zIndex = 1;
+    await say("Earn coins from Jobs or mine em from the cave or just invest!!", 7000);
+
+    const tShop = document.getElementById("item3");
+    tCave.style.zIndex = "unset";
+    tJob.style.zIndex = "unset";
+    tInv.style.zIndex = "unset";
+    tShop.style.zIndex = 1;
+    await say("Buy cool stuff from the shop and enjoyy!!", 7000);
+    tShop.style.zIndex = "unset";
+    
+    tbtns.forEach((button,index) => {
+        button.style.display = "unset";
+    })
+
+    tutorialbg.style.opacity = 0;
+    tutorialbg.style.pointerEvents = "none";
+    tutorialbg.style.zIndex = -10;
+
+    localStorage.setItem("newPlayer", "false")
+}
+const tutorialBtn = document.getElementById("tutorial-btn")
+tutorialBtn.addEventListener("click", ()=>{
+    settingsClose.click()
+    tutorial()
+})
+
+
+
+//Mobile Screen
+const isMobileScreen = window.matchMedia("(max-width:768px)").matches;
+if(isMobileScreen){
+    setTimeout(() => {
+        broke("mobile")
+    }, 60000);
+    if(localStorage.getItem("mobileBtns") == null){
+        mobileView("yes")
+    }
+}
 
 // temp change of values
 function temp(){

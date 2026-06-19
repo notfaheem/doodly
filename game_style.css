@@ -219,12 +219,46 @@ section{
     display: grid;
     grid-template-columns: 70% 30%;
     grid-template-rows: repeat(1fr, 3);
+    gap:10px;
 }
 .credits{
     padding:10px 150px;
     display: grid;
     grid-template-columns: 70% 30%;
     grid-template-rows: repeat(1fr, 3);
+    gap:10px;
+}
+.setings-toggles{
+    position: relative;
+    overflow: hidden;
+    appearance: none;
+    width:60px;
+    height:30px;
+    background-color: #ffeb92;
+    cursor: pointer;
+    border:2px solid #000;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+.setings-toggles:checked{
+    background-color: #86BCBD;
+}
+.setings-toggles::after{
+    content: "";
+    position: absolute;
+    top:50%;
+    left:2px;
+    right:unset;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    background-color: #000;
+    transition: 0.3s;
+}
+.setings-toggles:checked::after{
+    left:unset;
+    right:2px;
 }
 
 
@@ -505,10 +539,10 @@ section{
     width:35px;
     height:60px;
     position: absolute;
-    /* top:350px;
-    left:610px; */
-    top:80%;
-    left:20%;
+     top:350px;
+    left:610px; 
+    /* top:80%;
+    left:20%; */
     z-index:10;
     transition: transform 0.3s;
 }
@@ -618,4 +652,30 @@ section{
 }
 .preview-text-red{
     color: red;
+}
+
+
+
+#tutorial{
+    width:100%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    left:0;
+    background-color: #00000049;
+    opacity: 0;
+    z-index: -10;
+    transition: 0.5s;
+}
+.tutorial-btn{
+    width:20%;
+    position: relative;
+    left:50%;
+    transform:translateX(-50%) scale(0.7);
+    background-color: #86BCBD;
+    color: #000;
+}
+
+.motion{
+    display: none;
 }

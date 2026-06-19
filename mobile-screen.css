@@ -1,0 +1,137 @@
+.motion{
+    position: fixed;
+    bottom: 30px;
+    left:50%;
+    transform: translateX(-50%);
+    width:120px;
+    height: 120px;
+}
+.motion-btn{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #ffeb92;
+    border-radius: 20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor: pointer;
+    touch-action: none;
+    user-select: none;
+}
+#up-btn{
+    top:0;
+    left:40px;
+}
+#down-btn{
+    bottom:0;
+    left:40px;
+}
+#left-btn{
+    top:40px;
+    left:0;
+}
+#right-btn{
+    top:40px;
+    right:0;
+}
+
+
+
+@media screen and (max-width: 768px){
+    body{
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+    }
+    .main-sec{
+        position: relative;
+    }
+    .bg-v{
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .doo-container{
+        left:150px;
+        scale: 0.5;
+    }
+
+    .top-bar{
+        gap:20px;
+        padding: 0;
+        grid-template-columns: 1fr 5fr 1fr 1fr 1fr 1fr;
+        justify-content: center;
+        right:0;
+        z-index:100;
+        pointer-events:none;
+        scale: 0.5;
+    
+
+    }
+    #settings-btn{
+        pointer-events:auto;
+        cursor:pointer;
+        scale: 1.5;
+    }
+
+    .item{
+        transform: scale(0.5);
+    }
+    .item1{
+        left:50%;
+        top:50%;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    .item2{
+        left:60%;
+        top:42%;
+    }
+    .item3{
+        left:0%;
+        top:60%;
+    }
+    .item4{
+        left:35%;
+        top:55%;
+    }
+    .item5{
+        left:60%;
+        top:70%;
+    }
+    .item6{
+        left:0%;
+        top:15%;
+    }
+    .item7{
+        left:55%;
+        top:13%;
+    }
+    .item8{
+        left:30%;
+        top:10%;
+    }
+
+
+
+
+    .pp{
+        transform: translate(-50%,-50%) scale(0.6);
+    }
+
+
+
+
+    .shop-top{
+        scale: 0.5;
+        justify-content: center;
+        gap:10px;
+    }
+    .shop-items-container{
+        display: flex;
+        flex-direction: column;
+    }
+    .shop-item{
+        scale: 0.8;
+    }
+}

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doodly - Game</title>
     <link rel="stylesheet" href="game_style.css">
+    <link rel="stylesheet" href="mobile-screen.css">
     <link rel="shortcut icon" href="public/logo.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,6 +28,9 @@
     <div class="bg bg-w"></div>
 
 
+
+
+    <div id="tutorial"></div>
 
 
 
@@ -59,7 +63,7 @@
 
 
 
-    <section>
+    <section class="main-sec">
         <div id="doo-container" class="doo-container">
             <div class="doo"></div>
             <div class="leg" id="leg1"></div>
@@ -198,8 +202,11 @@
             <hr>
             <div class="settings-container">
                 <div class="setting">Background Music</div>
-                <input id="bgm-toggle" type="checkbox">
-                <div class="setting"></div>
+                <input class="setings-toggles" id="bgm-toggle" type="checkbox">
+                <div class="setting">Sound Effects</div>
+                <input class="setings-toggles" id="sound-effects-toggle" type="checkbox">
+                <div class="setting">Movement Buttons</div>
+                <input class="setings-toggles" id="mobile-btns-toggle" type="checkbox">
             </div>
             <div class="credits">
                 <p>Idea, Development</p>
@@ -212,6 +219,7 @@
                         href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=366778">Pixabay</a>
                 </div>
             </div>
+            <div class="btn tutorial-btn" id="tutorial-btn">Play Tutorial </div>
         </div>
     </div>
 
@@ -586,6 +594,24 @@
     </div>
 
 
+
+    <div class="opening">
+        <div class="o-wel"></div>
+    </div>
+
+
+
+
+
+
+    <!--Mobile View Settings-->
+
+    <div class="motion" id="mobile-view-btns">
+        <div class="motion-btn" id="up-btn">^</div>
+        <div class="motion-btn" id="down-btn">^</div>
+        <div class="motion-btn" id="left-btn"> &lt;</div>
+        <div class="motion-btn" id="right-btn"> &gt;</div>
+    </div>
 
 
 
