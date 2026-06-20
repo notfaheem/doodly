@@ -203,6 +203,7 @@ section{
     border-radius: 20px;
     transition: 0.5s;
     transform:translate(-50%,-50%) scale(0) ;
+    overflow-y:scroll ;
 }
 .settings-h{
     font-size:30px;
@@ -226,7 +227,7 @@ section{
     padding:10px 150px;
     display: grid;
     grid-template-columns: 70% 30%;
-    grid-template-rows: repeat(1fr, 3);
+    grid-template-rows: repeat(1fr, 6);
     gap:10px;
 }
 .setings-toggles{
