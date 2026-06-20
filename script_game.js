@@ -118,7 +118,6 @@ function getSfx(access){
         })
     }
 }
-
 // Settings
 const settingsBtn = document.getElementById("settings-btn");
 const settings = document.getElementById("settings");
@@ -132,7 +131,10 @@ settingsClose.addEventListener("click" , ()=> {
     settings.style.transform = "translate(-50%, -50%) scale(0) ";
     settingsBg.style.transform = "scale(0)";
 })
-
+settingsBg.addEventListener("click", ()=>{
+    settings.style.transform = "translate(-50%, -50%) scale(0) ";
+    settingsBg.style.transform = "scale(0)";
+})
     /*Movement*/
 const doo = document.getElementById("doo-container");
 const legOne = document.getElementById("leg1");
@@ -869,7 +871,7 @@ const isMobileScreen = window.matchMedia("(max-width:768px)").matches;
 if(isMobileScreen){
     setTimeout(() => {
         broke("mobile")
-    }, 60000);
+    }, 100000);
     if(localStorage.getItem("mobileBtns") == null){
         mobileView("yes")
     }

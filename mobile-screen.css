@@ -74,6 +74,11 @@
         cursor:pointer;
         scale: 1.5;
     }
+    .back-btn{
+        pointer-events:auto;
+        cursor:pointer;
+        scale: 1;
+    }
 
     .item{
         transform: scale(0.5);
@@ -85,19 +90,19 @@
     }
     .item2{
         left:60%;
-        top:42%;
+        top:32%;
     }
     .item3{
         left:0%;
-        top:60%;
+        top:50%;
     }
     .item4{
         left:35%;
-        top:55%;
+        top:50%;
     }
     .item5{
         left:60%;
-        top:70%;
+        top:60%;
     }
     .item6{
         left:0%;
@@ -120,8 +125,6 @@
     }
 
 
-
-
     .shop-top{
         scale: 0.5;
         justify-content: center;
@@ -134,4 +137,39 @@
     .shop-item{
         scale: 0.8;
     }
+
+
+
+    .invest-top{
+        gap:60px;
+    }
+    #close-invest{
+        font-size: 50px;
+    }
+    .for-next-text{
+        font-size: 12px;
+    }
+
+
+
+    .settings{
+        padding: 10px 20px;
+    }
+    .settings-container, .credits{
+        padding:10px 0;
+        scale: 0.7;
+    }
+    .tutorial-btn{
+        width: 50%;
+    }
+
+
+
+
+    .say{
+        scale: 2;
+        width: 100px;
+        top:-85px
+    }
+
 }
