@@ -4,13 +4,13 @@
     font-family: "Gochi Hand", cursive;
     scroll-behavior: smooth;
 }
-body{
+html, body{
     position: relative;
     width:100%;
-    height: 100vh;
-    overflow: hidden;
+    height:100%;
+    height:100dvh;
+    overflow:hidden;
 }
-
 
 
 .bg-v {
@@ -81,7 +81,8 @@ a.no{
 
 section{
     width:100%;
-    height: 100vh;
+    height:100vh;
+    height:100dvh;
     overflow: hidden;
 }
 
@@ -593,6 +594,7 @@ section{
     opacity:0;
     pointer-events: none;
     transition:0.5s;
+    scale: 1.5;
     transform: translateX(-50%);
 }
 #accessories{
@@ -634,7 +636,7 @@ section{
     left:50%;
     transform: translateX(-50%);
     z-index: 3;
-    width:120%;
+    width:140%;
     height: 50px;
     gap:5px;
     background:#ffffff50;
@@ -648,7 +650,7 @@ section{
     width:15px;
 }
 .preview-text{
-    font-size: 10px;
+    font-size: 15px;
 }
 .preview-text-red{
     color: red;
@@ -678,7 +680,72 @@ section{
 
 .motion{
     display: none;
+    z-index: 2;
 }
 #down-btn{
     rotate: 180deg;
+}
+
+
+
+
+
+.opener{
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    position: relative;
+}
+.opener-bg{
+    background-color: #fff;
+}
+.opener-welcome{
+    font-size: 40px;
+    color: #000 ; 
+    position: absolute;
+    opacity: 0;
+    transition: 1s;
+}
+.svg-container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+svg {
+    display: none;
+    width: 1000px;
+    height: auto;
+    position: relative;
+    z-index: 1;
+}
+svg path {
+    fill: transparent;
+    stroke: #000 ;
+    stroke-width: 7;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: textAnimation  4s ease-in-out 1 forwards;
+}
+@keyframes textAnimation{
+    0%{
+        stroke-dashoffset: 1000;
+    }
+    80%{
+        fill: transparent;
+    }
+    100%{
+        stroke-dashoffset: 0;
+        fill: #000;
+    }
+}
+@keyframes fadeOut {
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        display: none;
+    }
 }

@@ -4,10 +4,27 @@ const mBtnsToggle = document.getElementById("mobile-btns-toggle");
 const mobileViewBtns = document.getElementById("mobile-view-btns");
 window.addEventListener("load", ()=>{
     document.getElementById("loading").style.display = "none";
+
+    const openerW = document.getElementById("opener-welcome");
+    const openerDoodly = document.getElementById("opener-doodly");
+    const openerMain = document.getElementById("opener");
+    openerW.style.opacity = 1;
+    setTimeout(()=>{
+        openerW.style.opacity = 0;
+        setTimeout(() => {
+            openerDoodly.style.display = "unset";
+            setTimeout(()=>{
+                openerMain.style.animation = "fadeOut 1s forwards";
+            },6000)
+        },1000)
+    },2000)
+
     const accessories = document.getElementById("accessories");
-    if(localStorage.getItem("newPlayer") == null || localStorage.getItem("newPlayer") == "true"){
-        tutorial();
-    }
+    setTimeout(()=>{
+        if (localStorage.getItem("newPlayer") == null || localStorage.getItem("newPlayer") == "true") {
+            tutorial();
+        }
+    },10000)
     if(localStorage.getItem("accessories") == "yellow-hat"){
         accessories.classList.add("yellow-hat")
     }else if (localStorage.getItem("accessories") == "blue-hat"){
@@ -542,19 +559,10 @@ shopBtns.forEach((shopBtn, index) => {
 
             if (shopBtn == shopBtns[0]) {
                 localStorage.setItem("speed", 4);
-                setTimeout(() => {
-                    localStorage.setItem("speed", 2);
-                }, 300000)
             }else if (shopBtn == shopBtns[1]) {
                 localStorage.setItem("speed", 8);
-                setTimeout(() => {
-                    localStorage.setItem("speed", 2);
-                }, 300000)
             }else if (shopBtn == shopBtns[2]) {
                 localStorage.setItem("speed", 12);
-                setTimeout(() => {
-                    localStorage.setItem("speed", 2);
-                }, 300000)
             }else if (shopBtn == shopBtns[3]) {
                 updateStats = true;
                 changeStats(1, 0, 0)
@@ -758,11 +766,14 @@ function startMove(direction){
             pos = parseFloat(getComputedStyle(doo).left);
             doo.style.left = (pos + speed) + "px";
             doo.style.transform = "scaleX(1)";
+            sayText.style.transform = "scaleX(1) translateX(-50%)";
+
         }
         if(direction == "left"){
             pos = parseFloat(getComputedStyle(doo).left);
             doo.style.left = (pos - speed) + "px";
             doo.style.transform = "scaleX(-1)";
+            sayText.style.transform = "scaleX(-1) translateX(50%)";
         }
         if(direction == "up"){
             pos = parseFloat(getComputedStyle(doo).top);
@@ -797,7 +808,6 @@ function stopMove(){
     btn.addEventListener("touchend", stopMove);
     btn.addEventListener("touchcancel", stopMove);
 });
-localStorage.removeItem("speed")
 
 
 //tutorial
@@ -884,10 +894,3 @@ function temp(){
     updateStats=false;
 }
 temp()
-
-
-/* TO DO 
-
-- Mobile View with controls
-
-*/

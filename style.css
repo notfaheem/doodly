@@ -64,7 +64,8 @@ nav {
 }
 .title{
     font-size: 20px;
-    font-family: "Pacifico", cursive;
+    font-family: "Inspiration", cursive;
+    font-weight:900 ;
     text-align: left;
 }
 .page{
@@ -144,8 +145,9 @@ section {
     box-shadow: inset 0 0 12px #00000041;
 }
 h1{
-    font-family: "Pacifico", cursive;
-    font-size: 50px;
+    font-family: "Inspiration", cursive;
+    font-size: 100px;
+    font-weight: 900;
 }
 .para1{
     margin: 0 0 15px 0;
