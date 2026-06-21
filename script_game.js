@@ -39,6 +39,17 @@ window.addEventListener("load", ()=>{
         mobileViewBtns.style.display = "none";
         mBtnsToggle.checked = false;
     }
+    
+    
+    const isMobileScreen = window.matchMedia("(max-width:768px)").matches;
+    if (isMobileScreen) {
+        setTimeout(() => {
+            broke("mobile")
+        }, 100000);
+        if (localStorage.getItem("mobileBtns") == null) {
+            mobileView("yes")
+        }
+    }
 });
 document.addEventListener("click", () => {
     if(localStorage.getItem("bgm") == null || localStorage.getItem("bgm") == "yes"){
@@ -652,7 +663,7 @@ function broke (what){
         noMoneyPara.innerText = "World 2 is coming sooonnnn... Stay tuned for your next adventures journey of life there. Meanwhile can you make it to 1 million coins here?";
     }else if(what == "mobile"){
         noMoneyH.innerText = "Disclaimer";
-        noMoneyPara.innerText = "You are using a low width device, where Doodly works but may have some bugs. So kindly switch to a high width device or if u find any bugs in this device let us know in the feedback form in the settings menu!! Enjoyy...";
+        noMoneyPara.innerText = "You are using a low width device, where Doodly works but may have some bugs. So kindly switch to a high width device or if u find any bugs in this device let us know in the feedback form... Enjoyy!!!";
     }
     else{
         noMoneyH.innerText = "Requirements Not Met";
@@ -795,18 +806,31 @@ function stopMove(){
 }
 
 
+
 [
     [mobileRight,"right"],
     [mobileLeft,"left"],
     [mobileUp,"up"],
     [mobileDown,"down"]
 ].forEach(([btn,dir])=>{
-    btn.addEventListener("touchstart", e=>{
-        e.preventDefault();
-        startMove(dir);
-    });
-    btn.addEventListener("touchend", stopMove);
-    btn.addEventListener("touchcancel", stopMove);
+    const isMobile = window.matchMedia("(max-width:768px)").matches;
+    if(isMobile){
+        btn.addEventListener("touchstart", e=>{
+            e.preventDefault();
+            startMove(dir);
+        });
+        btn.addEventListener("touchend", stopMove);
+        btn.addEventListener("touchcancel", stopMove);
+
+    }else{
+        btn.addEventListener("pointerdown", e=>{
+            e.preventDefault();
+            startMove(dir);
+        });
+        btn.addEventListener("pointerup", stopMove);
+        btn.addEventListener("pointerleave", stopMove);
+        btn.addEventListener("pointercancel", stopMove);
+    }
 });
 
 
@@ -876,16 +900,6 @@ tutorialBtn.addEventListener("click", ()=>{
 
 
 
-//Mobile Screen
-const isMobileScreen = window.matchMedia("(max-width:768px)").matches;
-if(isMobileScreen){
-    setTimeout(() => {
-        broke("mobile")
-    }, 100000);
-    if(localStorage.getItem("mobileBtns") == null){
-        mobileView("yes")
-    }
-}
 
 // temp change of values
 function temp(){
