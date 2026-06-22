@@ -32,24 +32,32 @@ window.addEventListener("load", ()=>{
     }else if (localStorage.getItem("accessories") == "red-hat"){
         accessories.classList.add("red-hat")
     }
-    if(localStorage.getItem("mobileBtns") == "yes"){
-        mobileViewBtns.style.display = "flex";
-        mBtnsToggle.checked = true;
-    }else{
-        mobileViewBtns.style.display = "none";
-        mBtnsToggle.checked = false;
-    }
-    
-    
-    const isMobileScreen = window.matchMedia("(max-width:768px)").matches;
-    if (isMobileScreen) {
-        setTimeout(() => {
-            broke("mobile")
-        }, 100000);
-        if (localStorage.getItem("mobileBtns") == null) {
-            mobileView("yes")
+
+
+    function setupMobileButtons() {
+        const isMobileScreen = window.matchMedia("(max-width:768px)").matches;
+        const saved = localStorage.getItem("mobileBtns");
+        if (saved === null) {
+            if (isMobileScreen) {
+                localStorage.setItem("mobileBtns", "yes");
+                mobileView("yes");
+                mBtnsToggle.checked = true;
+            } else {
+                localStorage.setItem("mobileBtns", "no");
+                mobileView("no");
+                mBtnsToggle.checked = false;
+            }
+        } else {
+            mobileView(saved);
+            mBtnsToggle.checked = saved === "yes";
+        }
+        if (isMobileScreen) {
+            setTimeout(() => {
+                broke("mobile");
+            }, 100000);
         }
     }
+    setupMobileButtons();
 });
 document.addEventListener("click", () => {
     if(localStorage.getItem("bgm") == null || localStorage.getItem("bgm") == "yes"){
