@@ -458,9 +458,21 @@ function toggleStat (head, para, know, hearts, coins, btn, timeDelayforStats, lo
 
     document.getElementById("pp-h").innerText = head;
     document.getElementById("pp-para").innerText = para;
-    document.getElementById("pp-edu").innerText = "+" + know;
-    document.getElementById("pp-hearts").innerText = "+" + hearts;
-    document.getElementById("pp-coins").innerText = "+" + coins;
+    if(know<0){
+        document.getElementById("pp-edu").innerText = know;
+    }else{
+        document.getElementById("pp-edu").innerText = "+" + know;
+    }
+    if(hearts<0){
+        document.getElementById("pp-hearts").innerText = hearts;
+    }else{
+        document.getElementById("pp-hearts").innerText = "+" + hearts;
+    }
+    if(coins<0){
+        document.getElementById("pp-coins").innerText = coins;
+    }else{
+        document.getElementById("pp-coins").innerText = "+" + coins;
+    }
     document.getElementById("pp-btn").innerText = btn;
     if(timeDelayforStats != undefined){
         statsContainer.style.opacity = 0;
@@ -857,6 +869,7 @@ async function tutorial (){
     })
 
     await say("Hi I am Doo, move around here using arrow keys.", 6000);
+
     const tHome = document.getElementById("item1");
     tHome.style.zIndex = 1;
     await say("This is my home.", 5000)
@@ -889,7 +902,10 @@ async function tutorial (){
     tInv.style.zIndex = "unset";
     tShop.style.zIndex = 1;
     await say("Buy cool stuff from the shop and enjoyy!!", 7000);
+
     tShop.style.zIndex = "unset";
+    await say("Hover over any building to see the possible rewards (black text) and cost (red text)", 7000);
+
     
     tbtns.forEach((button,index) => {
         button.style.display = "unset";
@@ -911,9 +927,8 @@ tutorialBtn.addEventListener("click", ()=>{
 
 
 // temp change of values
-function temp(){
+function temp(a,b,c){
     updateStats= true;
-    changeStats(0,0,0)
+    changeStats(a,b,c)
     updateStats=false;
 }
-temp()
