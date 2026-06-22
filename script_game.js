@@ -403,7 +403,7 @@ btns.forEach((button, index) => {
             }else if (know < knowCave){
                 broke("know")
             }else{
-                const coinsCave = randomNumber(30, 40);
+                const coinsCave = randomNumber(40, 50);
                 heartsCave = heartsCave*-1;
                 knowCave = knowCave*-1;
                 changeStats(knowCave, heartsCave, coinsCave);
