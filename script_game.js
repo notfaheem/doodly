@@ -88,6 +88,7 @@ bgmToggle.addEventListener("change", (event) => {
 })
 
 const bgm = new Audio("public/bgm.ogg");
+bgm.loop = true;
 function getBgm (access){
     if(access == "yes"){
         if(bgm.paused){
