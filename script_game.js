@@ -132,8 +132,6 @@ function mobileView(access){
 }
 
 
-
-
 const doneS = new Audio("public/done.mp3");
 const noS = new Audio("public/wrong.mp3");
 const studyS = new Audio("public/study.mp3");
@@ -239,7 +237,7 @@ window.addEventListener("keyup", ()=>{
 
 /*Highlighting*/
 function colour(){
-    const items = document.querySelectorAll('[id^="item"] .i-img');              /*AI*/
+    const items = document.querySelectorAll('[id^="item"] .i-img');
     items.forEach((item, index) => {
         const playerArea = doo.getBoundingClientRect();
         const itemArea = item.getBoundingClientRect();
@@ -262,7 +260,7 @@ function colour(){
         }
     });
 
-    requestAnimationFrame(colour);                                              /*AI*/
+    requestAnimationFrame(colour);
 }
 requestAnimationFrame(colour);
 
@@ -530,7 +528,7 @@ function closeToggle(){
 
 
 /*Random Number Generator */
-function randomNumber(min, max){                                             /*AI*/
+function randomNumber(min, max){
     const minCeild = Math.ceil(min);
     const maxFloored = Math.floor(max);
     return Math.floor(Math.random() * (maxFloored - minCeild + 1) + minCeild);
@@ -593,7 +591,7 @@ shopBtns.forEach((shopBtn, index) => {
         const knowToDecrease = Number(purchaseValues[0].innerText);
         const heartsToDecrease = Number(purchaseValues[1].innerText);
         const coinToDecrease = Number(purchaseValues[2].innerText);
-        if (Math.abs(coinToDecrease) > coins) {                               //take modulus of coin to decrease and etc.
+        if (Math.abs(coinToDecrease) > coins) {
             broke("coins")
         } else if (Math.abs(knowToDecrease) > know) {
             broke("know")
@@ -788,8 +786,6 @@ investBg.addEventListener("click", () => {
 
 
 
-
-
 // Mobile controls
 const mobileUp = document.getElementById("up-btn");
 const mobileDown = document.getElementById("down-btn");
@@ -936,8 +932,6 @@ tutorialBtn.addEventListener("click", ()=>{
     settingsClose.click()
     tutorial()
 })
-
-
 
 
 // temp change of values

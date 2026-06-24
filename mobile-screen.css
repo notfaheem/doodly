@@ -39,7 +39,6 @@
 }
 
 
-
 @media screen and (max-width: 768px){
     body{
         height: 100vh;
@@ -176,14 +175,11 @@
 
 
 
-
     .say{
         scale: 3;
         width: 100px;
         top:-85px
     }
-
-
 
 
 
@@ -196,7 +192,7 @@
     }
 
 
-    
+
     html, body {
         width: 100%;
         max-width: 100%;
