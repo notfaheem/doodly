@@ -175,6 +175,9 @@ section{
     width:50%;
     padding: 5px 15px;
     position: relative;
+    transition: 0.3s;
+    opacity: 0;
+    pointer-events: none;
 }
 
 

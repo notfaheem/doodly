@@ -273,7 +273,7 @@ btns.forEach((button, index) => {
     button.addEventListener("click", (e) => {
         if(e.currentTarget.disabled) return;
         if (btns[index] == btns[0]) {
-            toggleStat("Welcome Home", "This is your stats so far... How is it?", know, hearts, coins, "Ok");
+            toggleStat("Welcome Home", "This is your stats so far... How is it?", know, hearts, coins, "Ok", undefined, undefined, undefined, true);
         }
         if (btns[index] == btns[1]) {
             let coinsCave = randomNumber(10, 20);
@@ -453,8 +453,9 @@ document.getElementById("coins").innerText = coins;
 const bg = document.getElementById("bg-b");
 const pp = document.getElementById("pp");
 const statsContainer = document.getElementById("pp-container");
+const ppBtn = document.getElementById("pp-btn");
 
-function toggleStat (head, para, know, hearts, coins, btn, timeDelayforStats, loadingMessage, sound){
+function toggleStat (head, para, know, hearts, coins, btn, timeDelayforStats, loadingMessage, sound, isHome){
 
     document.getElementById("pp-h").innerText = head;
     document.getElementById("pp-para").innerText = para;
@@ -485,23 +486,36 @@ function toggleStat (head, para, know, hearts, coins, btn, timeDelayforStats, lo
     requestAnimationFrame(() => {
         bg.style.opacity = 1;
         pp.style.opacity = 1;
+        if(isHome == true){
+            ppBtn.style.opacity = 1;
+            ppBtn.style.pointerEvents = "all";
+            statsContainer.style.opacity = 0;
+            statsContainer.style.display = "none";
+            document.getElementById("pp-para").innerText = `You have ${know} knowledge, ${hearts} hearts, ${coins} coins so far! `;
+        }
         if(timeDelayforStats != undefined){
-        document.getElementById("pp-para").innerText = loadingMessage;
-        sound.currentTime = 0;
-        sound.play();
+            if(statsContainer.style.display == "none"){
+                statsContainer.style.display = "flex";
+            }
+            document.getElementById("pp-para").innerText = loadingMessage;
+            sound.currentTime = 0;
+            sound.play();
             setTimeout(() => {
                 statsContainer.style.opacity = 1;
                 document.getElementById("pp-para").innerText = para;
+                ppBtn.style.opacity = 1;
+                ppBtn.style.pointerEvents = "all";
             },timeDelayforStats)
         }
     })
 
 }
 
-const ppBtn = document.getElementById("pp-btn");
 ppBtn.addEventListener("click", closeToggle);
 let updateStats = false;
 function closeToggle(){
+    ppBtn.style.opacity = 0;
+    ppBtn.style.pointerEvents = "none";
     pp.style.opacity = 0;
     bg.style.opacity = 0;
     doneS.currentTime = 0;

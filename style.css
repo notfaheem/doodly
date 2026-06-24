@@ -213,3 +213,36 @@ footer{
 }
 
 
+@media screen and (max-width: 768px){
+    section{
+        padding:20px;
+    }
+    .card-container{
+        transform:translate(-50%,-50%) scale(0.7);
+    }
+    .btn2{
+        font-size: 23px;
+    }
+    nav{
+        padding: 10px;
+        gap:10px;
+        grid-template-columns: 1fr 1fr 5fr 1fr 1fr 1fr;
+    }
+    .page{
+        padding:2px 5px;
+    }
+    .btn1{
+        display: none;
+    }
+    .a-sec{
+        padding: 10px 20px;
+        height: auto;
+    }
+    .sub-head{
+        padding: 5px 20px;
+        font-size: 20px;
+    }
+    .img1{
+        width: 100px;
+    }
+}
