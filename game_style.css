@@ -405,6 +405,7 @@ section{
     transform: translateX(-50%);
     opacity: 0.1;
     pointer-events: none;
+    z-index: 5;
 }
 
 
@@ -649,7 +650,7 @@ section{
     background-color: #00000049;
     opacity: 0;
     z-index: -10;
-    transition: 0.5s;
+    transition: 1.5s;
 }
 .tutorial-btn{
     width:20%;

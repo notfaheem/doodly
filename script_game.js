@@ -5,19 +5,19 @@ const mobileViewBtns = document.getElementById("mobile-view-btns");
 window.addEventListener("load", ()=>{
     document.getElementById("loading").style.display = "none";
 
-    const openerW = document.getElementById("opener-welcome");
-    const openerDoodly = document.getElementById("opener-doodly");
-    const openerMain = document.getElementById("opener");
-    openerW.style.opacity = 1;
-    setTimeout(()=>{
-        openerW.style.opacity = 0;
-        setTimeout(() => {
-            openerDoodly.style.display = "unset";
-            setTimeout(()=>{
-                openerMain.style.animation = "fadeOut 1s forwards";
-            },6000)
-        },1000)
-    },2000)
+    // const openerW = document.getElementById("opener-welcome");
+    // const openerDoodly = document.getElementById("opener-doodly");
+    // const openerMain = document.getElementById("opener");
+    // openerW.style.opacity = 1;
+    // setTimeout(()=>{
+    //     openerW.style.opacity = 0;
+    //     setTimeout(() => {
+    //         openerDoodly.style.display = "unset";
+    //         setTimeout(()=>{
+    //             openerMain.style.animation = "fadeOut 1s forwards";
+    //         },6000)
+    //     },1000)
+    // },2000)
 
     const accessories = document.getElementById("accessories");
     setTimeout(()=>{
@@ -228,6 +228,17 @@ window.addEventListener("keydown", () => {
         legOne.style.animation = "walk 1s infinite";
         legTwo.style.animation = "walk 1s infinite 0.5s";
     }
+    if (event.code == "Space") {
+        event.preventDefault();
+        if (currentInteractButton) {
+            currentInteractButton.click();
+
+            if (currentInteractButton == btns[3]) {
+                schoolForTutorial = "clicked";
+                console.log("school clicked");
+            }
+        }
+    }
 });
 window.addEventListener("keyup", ()=>{
     legOne.style.animation = "none";
@@ -236,6 +247,8 @@ window.addEventListener("keyup", ()=>{
 })
 
 /*Highlighting*/
+let currentInteractButton = null;
+let schoolForTutorial = "none";
 function colour(){
     const items = document.querySelectorAll('[id^="item"] .i-img');
     items.forEach((item, index) => {
@@ -252,11 +265,20 @@ function colour(){
             itemContainer.classList.add("item-hover");
             btns[index].style.opacity = 1;
             btns[index].style.pointerEvents = "all";
+            currentInteractButton = btns[index];
+            if(index == 3){
+                if(schoolForTutorial == "none"){
+                    schoolForTutorial = "school";
+                }
+            }
         }else{
             item.classList.remove(`active-img${index+1}`);
             itemContainer.classList.remove("item-hover")
             btns[index].style.opacity = 0;
             btns[index].style.pointerEvents = "none";
+            if(currentInteractButton == btns[index]){
+                currentInteractButton= null;
+            }
         }
     });
 
@@ -332,6 +354,7 @@ btns.forEach((button, index) => {
                     }
                 }, 1000)
             }
+            schoolForTutorial = "clicked";
         }
         if (btns[index] == btns[4]) {
             let knowCave = randomNumber(1, 10);
@@ -557,20 +580,46 @@ function changeStats (knowValue, heartsValue, coinsValue){
 
 
 /*Say*/
-function say(text,time){
+function say(text,time,special){
     sayText.innerText = text;
     sayText.style.opacity = 1;
-    setTimeout(()=> {
-        sayText.style.opacity = 0;
-    },time)
-    return new Promise((resolve) => {
-        setTimeout(()=>{
-            resolve();
-        }, time)
-    })
+    if (special == undefined){
+        setTimeout(()=> {
+            sayText.style.opacity = 0;
+        },time);
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve();
+            }, time)
+        })
+    }
+    if(special == "school"){
+        return new Promise((resolve)=>{
+            const checkSchool = setInterval(()=>{
+                if (schoolForTutorial == "school") {
+                    sayText.style.opacity = 0;
+                    resolve();
+                    clearInterval(checkSchool);
+                }
+            },100)
+        })
+    }
+    if(special == "clicked"){
+        return new Promise((resolve)=>{
+            const checkSchool = setInterval(()=>{
+                console.log("Checking for click in interwell")
+                console.log(schoolForTutorial)
+                if (schoolForTutorial == "clicked") {
+                    sayText.style.opacity = 0;
+                    clearInterval(checkSchool);
+                    resolve();
+                }
+            },100)
+        })
+    }
+    
 }
-
-
+tutorial()
 /*Open Shop*/
 const shopBtns = document.querySelectorAll(".shop-btn");
 const shopBg = document.getElementById("shop-bg");
@@ -878,23 +927,23 @@ async function tutorial (){
         button.style.display = "none";
     })
 
-    await say("Hi I am Doo, move around here using arrow keys.", 6000);
+    await say("Hi! I'm Doo. Move with arrow keys.", 1000);
 
     const tHome = document.getElementById("item1");
     tHome.style.zIndex = 1;
-    await say("This is my home.", 5000)
+    await say("This is my home.", 1000)
 
     const tScho = document.getElementById("item4");
     tHome.style.zIndex = "unset";
     tScho.style.zIndex = 1;
-    await say("You can earn knowledge from the school.", 5000)
+    await say("School gives you knowledge.", 1000)
 
     const tHos = document.getElementById("item2");
     const tGym = document.getElementById("item6");
     tScho.style.zIndex = "unset";
     tHos.style.zIndex = 1;
     tGym.style.zIndex = 1;
-    await say("Improve your health and earn hearts from hospital and gym.", 7000);
+    await say("Hospital and gym boost your health.", 1000);
 
     const tCave = document.getElementById("item5");
     const tJob = document.getElementById("item7");
@@ -904,28 +953,33 @@ async function tutorial (){
     tCave.style.zIndex = 1;
     tJob.style.zIndex = 1;
     tInv.style.zIndex = 1;
-    await say("Earn coins from Jobs or mine em from the cave or just invest!!", 7000);
+    await say("Jobs, caves, and investments earn coins.", 1000);
 
     const tShop = document.getElementById("item3");
     tCave.style.zIndex = "unset";
     tJob.style.zIndex = "unset";
     tInv.style.zIndex = "unset";
     tShop.style.zIndex = 1;
-    await say("Buy cool stuff from the shop and enjoyy!!", 7000);
+    await say("Buy items and upgrades at the shop.", 1000);
 
-    tShop.style.zIndex = "unset";
-    await say("Hover over any building to see the possible rewards (black text) and cost (red text)", 7000);
-
-    
-    tbtns.forEach((button,index) => {
-        button.style.display = "unset";
-    })
 
     tutorialbg.style.opacity = 0;
     tutorialbg.style.pointerEvents = "none";
-    tutorialbg.style.zIndex = -10;
 
+    tShop.style.zIndex = "unset";
+    await say("Hover buildings to preview rewards and costs.", 1000);
+
+    tutorialbg.style.zIndex = -10;
     localStorage.setItem("newPlayer", "false")
+
+    tbtns.forEach((button,index) => {
+        button.style.display = "unset";
+    })
+    schoolForTutorial = "none";
+    await say("Go to school; it’s on the right side of your home.", 7000, "school");
+    console.log("SCHOOL DONE")
+    await say("Click the interact button or space bar", 7000, "clicked");
+
 }
 const tutorialBtn = document.getElementById("tutorial-btn")
 tutorialBtn.addEventListener("click", ()=>{
