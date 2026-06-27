@@ -123,6 +123,11 @@ section{
     padding:10px 30px;
     display: grid;
     grid-template-columns: 150px 5fr 100px 100px 100px 1fr;
+    background:#00000000 ;
+    transition:0.5s ;
+}
+.back-btn{
+    padding: 5px 20px;
 }
 .stats{
     gap:10px;

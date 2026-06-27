@@ -918,6 +918,7 @@ function stopMove(){
 async function tutorial (){
 
     const tutorialbg = document.getElementById("tutorial");
+    tutorialbg.style.transition = "0s";
     tutorialbg.style.opacity = 1;
     tutorialbg.style.pointerEvents = "all";
     tutorialbg.style.zIndex = 1;
@@ -927,23 +928,33 @@ async function tutorial (){
         button.style.display = "none";
     })
 
-    await say("Hi! I'm Doo. Move with arrow keys.", 1000);
+    await say("Hi! I'm Doo. Move with arrow keys.", 5000);
 
     const tHome = document.getElementById("item1");
     tHome.style.zIndex = 1;
-    await say("This is my home.", 1000)
+    tutorialbg.style.transition = "1.5s";
+    await say("This is my home.", 5000)
+
+    const topBar = document.getElementById("top-bar");
+    tHome.style.zIndex = "unset";
+    tutorialbg.style.background = "#0000008e";
+    topBar.style.background = "#fff";
+    topBar.style.zIndex = 1;
+    await say("This is your status bar! It shows your Knowledge, Hearts, and Coins. The gear button opens your settings.", 7000)
 
     const tScho = document.getElementById("item4");
-    tHome.style.zIndex = "unset";
+    topBar.style.zIndex = "unset";
+    tutorialbg.style.background = "#00000049";
+    topBar.style.background = "#00000000";
     tScho.style.zIndex = 1;
-    await say("School gives you knowledge.", 1000)
+    await say("School gives you knowledge.", 5000)
 
     const tHos = document.getElementById("item2");
     const tGym = document.getElementById("item6");
     tScho.style.zIndex = "unset";
     tHos.style.zIndex = 1;
     tGym.style.zIndex = 1;
-    await say("Hospital and gym boost your health.", 1000);
+    await say("Hospital and gym boost your health.", 5000);
 
     const tCave = document.getElementById("item5");
     const tJob = document.getElementById("item7");
@@ -953,21 +964,21 @@ async function tutorial (){
     tCave.style.zIndex = 1;
     tJob.style.zIndex = 1;
     tInv.style.zIndex = 1;
-    await say("Jobs, caves, and investments earn coins.", 1000);
+    await say("Jobs, caves, and investments earn coins.", 5000);
 
     const tShop = document.getElementById("item3");
     tCave.style.zIndex = "unset";
     tJob.style.zIndex = "unset";
     tInv.style.zIndex = "unset";
     tShop.style.zIndex = 1;
-    await say("Buy items and upgrades at the shop.", 1000);
+    await say("Buy items and upgrades at the shop.", 5000);
 
 
     tutorialbg.style.opacity = 0;
     tutorialbg.style.pointerEvents = "none";
 
     tShop.style.zIndex = "unset";
-    await say("Hover buildings to preview rewards and costs.", 1000);
+    await say("Hover buildings to preview rewards and costs.", 5000);
 
     tutorialbg.style.zIndex = -10;
     localStorage.setItem("newPlayer", "false")
@@ -980,6 +991,7 @@ async function tutorial (){
     console.log("SCHOOL DONE")
     await say("Click the interact button or space bar", 7000, "clicked");
 
+    await say("Cool! got some knowledge, now explore the world yourself!",10000)
 }
 const tutorialBtn = document.getElementById("tutorial-btn")
 tutorialBtn.addEventListener("click", ()=>{
