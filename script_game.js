@@ -5,19 +5,22 @@ const mobileViewBtns = document.getElementById("mobile-view-btns");
 window.addEventListener("load", ()=>{
     document.getElementById("loading").style.display = "none";
 
-    // const openerW = document.getElementById("opener-welcome");
-    // const openerDoodly = document.getElementById("opener-doodly");
-    // const openerMain = document.getElementById("opener");
-    // openerW.style.opacity = 1;
-    // setTimeout(()=>{
-    //     openerW.style.opacity = 0;
-    //     setTimeout(() => {
-    //         openerDoodly.style.display = "unset";
-    //         setTimeout(()=>{
-    //             openerMain.style.animation = "fadeOut 1s forwards";
-    //         },6000)
-    //     },1000)
-    // },2000)
+    const openerW = document.getElementById("opener-welcome");
+    if (localStorage.getItem("newPlayer") == "false") {
+        openerW.innerText = "Welcome Back";
+    }
+    const openerDoodly = document.getElementById("opener-doodly");
+    const openerMain = document.getElementById("opener");
+    openerW.style.opacity = 1;
+    setTimeout(()=>{
+        openerW.style.opacity = 0;
+        setTimeout(() => {
+            openerDoodly.style.display = "unset";
+            setTimeout(()=>{
+                openerMain.style.animation = "fadeOut 1s forwards";
+            },6000)
+        },1000)
+    },2000)
 
     const accessories = document.getElementById("accessories");
     setTimeout(()=>{
@@ -619,7 +622,7 @@ function say(text,time,special){
     }
     
 }
-tutorial()
+
 /*Open Shop*/
 const shopBtns = document.querySelectorAll(".shop-btn");
 const shopBg = document.getElementById("shop-bg");
@@ -991,7 +994,7 @@ async function tutorial (){
     console.log("SCHOOL DONE")
     await say("Click the interact button or space bar", 7000, "clicked");
 
-    await say("Cool! got some knowledge, now explore the world yourself!",10000)
+    await say("Cool! got some knowledge, now explore the world yourself!",15000)
 }
 const tutorialBtn = document.getElementById("tutorial-btn")
 tutorialBtn.addEventListener("click", ()=>{
