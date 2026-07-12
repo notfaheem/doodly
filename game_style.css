@@ -754,11 +754,16 @@ svg path {
 }
 .dr-cont{
     padding:20px 0;
+    display:grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: repeat(5, 1fr);
+    gap:5px;
 }
 .dr{
     border:1px solid #000;
     border-radius: 18px;
-    padding:5px;
+    padding:5px ;
+    aspect-ratio: 1 / 1;
     gap:5px;
     position: relative;
     overflow: hidden;

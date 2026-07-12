@@ -5,6 +5,7 @@ const mobileViewBtns = document.getElementById("mobile-view-btns");
 window.addEventListener("load", ()=>{
     document.getElementById("loading").style.display = "none";
 
+    //Opener
     const openerW = document.getElementById("opener-welcome");
     if (localStorage.getItem("newPlayer") == "false") {
         openerW.innerText = "Welcome Back";
@@ -21,6 +22,25 @@ window.addEventListener("load", ()=>{
             },6000)
         },1000)
     },2000)
+
+
+
+    // //Daily Rewards
+    // const drCont = document.getElementById("dr-cont");
+    // for (let i=2; i <=10; i++){
+    //     const dailyReward = i * 10;
+    //     const dailyHTML = `
+    //         <div class="flex-c dr">
+    //             <div class="dr-h">Day 1</div>
+    //             <img class="dr-img" src="public/coin.webp">
+    //             <div class="dr-value">10</div>
+    //             <div class="centerall flex dr-claimed">Claimed</div>
+    //         </div>`;
+    //     drCont.insertAdjacentHTML("beforeend", dailyHTML);
+    //     const dr = document.querySelectorAll(".dr");
+    //     console.log(dr[0].style.offsetH               eight)
+    // }
+
 
     const accessories = document.getElementById("accessories");
     setTimeout(()=>{
