@@ -736,3 +736,44 @@ svg path {
         display: none;
     }
 }
+
+#daily-bg{
+    z-index: 13;
+    background-color: #ffffff77;
+}
+#daily{
+    z-index: 14;
+    background:#ffeb92;
+    border:2px solid #000;
+    border-radius: 20px;
+    padding:20px;
+}
+.daily-h{
+    font-size:30px;
+    font-family: "Pacifico", cursive;
+}
+.dr-cont{
+    padding:20px 0;
+}
+.dr{
+    border:1px solid #000;
+    border-radius: 18px;
+    padding:5px;
+    gap:5px;
+    position: relative;
+    overflow: hidden;
+}
+.dr-h{
+    font-size: 20px;
+}
+.dr-img{
+    width:30px;
+}
+.dr-claimed{
+    width:100%;
+    height: 100%;
+    background:#ffffff91;
+    font-size:15px;
+    display:none; 
+    /* to be flex */
+}
